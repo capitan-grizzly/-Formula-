@@ -1,0 +1,234 @@
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-smooth);
+}
+
+ul {
+  list-style: none;
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+.logo-eq {
+  color: var(--green-300);
+}
+.logo-paren {
+  color: var(--green-500);
+}
+
+.nav-links {
+  display: none; /* Oculto en móvil */
+  gap: 2.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.nav-links a:hover {
+  color: var(--accent-primary);
+}
+
+.auth-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gray-500);
+  font-weight: 700;
+}
+
+.hero {
+  padding: 5rem 0;
+  display: grid;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+}
+
+.mockup-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-elevated);
+}
+
+.mockup-dots {
+  display: flex;
+  gap: 8px;
+  margin-right: 1.5rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--gray-700);
+}
+.dot:nth-child(1) {
+  background-color: var(--orange-500);
+} /* Usando naranja de la paleta */
+.dot:nth-child(2) {
+  background-color: #ffbd2e;
+} /* Amarilllo estándar para UI mac */
+.dot:nth-child(3) {
+  background-color: var(--green-500);
+} /* Usando verde de la paleta */
+
+.mockup-title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.mockup-body {
+  padding: 2rem;
+}
+
+.formula-bar {
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.formula-bar .fx {
+  color: var(--gray-500);
+  font-weight: 700;
+}
+
+.formula-bar .func {
+  color: var(--blue-500);
+}
+.formula-bar .args {
+  color: var(--text-secondary);
+}
+
+.score-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+}
+
+.score-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+
+.score-left svg {
+  color: var(--accent-primary);
+}
+
+.score-right {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  background-color: var(--accent-muted);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 200, 150, 0.2);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.2;
+}
+
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  color: var(--accent-primary);
+  transition: var(--transition-smooth);
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
+
+  .btn-text.mobile-hide {
+    display: inline-block;
+  }
+
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    padding: 6rem 0;
+  }
+
+  .hero-content h1 {
+    font-size: 3.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: row;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+@media (min-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hero-content h1 {
+    font-size: 4rem;
+  }
+}
