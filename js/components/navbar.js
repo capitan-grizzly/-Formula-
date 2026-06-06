@@ -1,6 +1,6 @@
 // js/components/navbar.js
 export function renderNavbar() {
-    return `
+  return `
     <nav class="nav-links">
       <a href="#curriculum">Aprender</a>
       <a href="#challenges">Desafíos</a>

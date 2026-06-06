@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Lesson {
+  id               Int         @id @default(autoincrement())
+  slug             String      @unique
+  title            String
+  description      String?
+  level            String
+  content          String
+  estimatedMinutes Int         @default(10)
+  order            Int         @default(0)
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  
+  challenges       Challenge[]
+}
+
+model Challenge {
+  id               Int      @id @default(autoincrement())
+  lessonId         Int
+  slug             String   @unique
+  challengeNumber  String   @unique
+  title            String
+  description      String
+  category         String   
+  difficulty       String   
+  expectedFormula  String?
+  efficiencyReq    Int?     
+  completed        Boolean  @default(false)
+  status           String   @default("pending")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  lesson           Lesson   @relation(fields: [lessonId], references: [id])
+}

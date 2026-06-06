@@ -1,0 +1,95 @@
+[
+  {
+    "slug": "introduccion-a-sum",
+    "title": "SUM — Suma de rangos",
+    "description": "La función más fundamental de Excel. Base de toda operación numérica.",
+    "level": "BEGINNER",
+    "content": "La función SUM suma todos los valores numéricos de un rango. Sintaxis: =SUM(número1, [número2], ...). Puede recibir rangos (A1:A10), valores individuales o una combinación. Ignora celdas vacías y texto automáticamente.",
+    "estimatedMinutes": 8,
+    "order": 1,
+    "challenges": [
+      {
+        "slug": "suma-ventas-mensuales",
+        "challengeNumber": "001",
+        "title": "Suma de ventas mensuales",
+        "description": "Tienes una columna B con 12 valores de ventas mensuales (B2:B13). Calcula el total anual en la celda B14.",
+        "category": "Funciones matemáticas",
+        "difficulty": "EASY",
+        "expectedFormula": "=SUM(B2:B13)",
+        "efficiencyReq": 80
+      },
+      {
+        "slug": "suma-multiples-rangos",
+        "challengeNumber": "002",
+        "title": "Suma de múltiples departamentos",
+        "description": "Tienes ventas de tres departamentos en rangos separados: B2:B6, D2:D6 y F2:F6. Suma el total de los tres en una sola fórmula.",
+        "category": "Funciones matemáticas",
+        "difficulty": "EASY",
+        "expectedFormula": "=SUM(B2:B6,D2:D6,F2:F6)",
+        "efficiencyReq": 85
+      }
+    ]
+  },
+  {
+    "slug": "introduccion-a-if",
+    "title": "IF — Lógica condicional",
+    "description": "Toma decisiones dentro de una celda evaluando una condición.",
+    "level": "BEGINNER",
+    "content": "IF evalúa una condición y devuelve un valor si es verdadera y otro si es falsa. Sintaxis: =IF(condición, valor_si_verdadero, valor_si_falso). Es la base de toda lógica condicional en Excel y el punto de entrada a funciones más complejas como IFS o SWITCH.",
+    "estimatedMinutes": 10,
+    "order": 2,
+    "challenges": [
+      {
+        "slug": "clasificar-calificaciones",
+        "challengeNumber": "003",
+        "title": "Clasificar calificaciones",
+        "description": "La celda A2 contiene una calificación numérica. Si es mayor o igual a 60, devuelve 'Aprobado'. Si no, devuelve 'Reprobado'.",
+        "category": "Lógica condicional",
+        "difficulty": "EASY",
+        "expectedFormula": "=IF(A2>=60,\"Aprobado\",\"Reprobado\")",
+        "efficiencyReq": 80
+      },
+      {
+        "slug": "bono-por-ventas",
+        "challengeNumber": "004",
+        "title": "Cálculo de bono por ventas",
+        "description": "Un vendedor recibe un bono del 10% si sus ventas (celda B2) superan $50,000. Si no llega a esa meta, el bono es 0. Calcula el bono en una sola fórmula.",
+        "category": "Lógica condicional",
+        "difficulty": "MEDIUM",
+        "expectedFormula": "=IF(B2>50000,B2*0.1,0)",
+        "efficiencyReq": 85
+      }
+    ]
+  },
+  {
+    "slug": "introduccion-a-vlookup",
+    "title": "VLOOKUP — Búsqueda vertical",
+    "description": "Busca un valor en la primera columna de un rango y devuelve un valor de la misma fila.",
+    "level": "BEGINNER",
+    "content": "VLOOKUP busca un valor en la columna más a la izquierda de un rango y devuelve el valor de una columna a la derecha. Sintaxis: =VLOOKUP(valor_buscado, rango, número_columna, [exacto]). El cuarto argumento debe ser FALSE para búsqueda exacta. Limitación clave: solo busca hacia la derecha, lo que XLOOKUP resuelve.",
+    "estimatedMinutes": 12,
+    "order": 3,
+    "challenges": [
+      {
+        "slug": "buscar-precio-producto",
+        "challengeNumber": "005",
+        "title": "Buscar precio de producto",
+        "description": "Tienes una tabla de productos en A2:C10 donde la columna A tiene el ID, la B el nombre y la C el precio. El ID buscado está en E2. Devuelve el precio correspondiente.",
+        "category": "Búsqueda y referencia",
+        "difficulty": "EASY",
+        "expectedFormula": "=VLOOKUP(E2,A2:C10,3,FALSE)",
+        "efficiencyReq": 80
+      },
+      {
+        "slug": "buscar-departamento-empleado",
+        "challengeNumber": "006",
+        "title": "Departamento de un empleado",
+        "description": "Una tabla en A2:D50 contiene ID, nombre, puesto y departamento de empleados. El ID a buscar está en F2. Devuelve el departamento del empleado.",
+        "category": "Búsqueda y referencia",
+        "difficulty": "MEDIUM",
+        "expectedFormula": "=VLOOKUP(F2,A2:D50,4,FALSE)",
+        "efficiencyReq": 85
+      }
+    ]
+  }
+]

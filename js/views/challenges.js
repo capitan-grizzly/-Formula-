@@ -1,8 +1,76 @@
 // js/views/challenges.js
 export function renderChallenges() {
+    // Se ejecuta de forma asíncrona para esperar a que el HTML devuelto ya esté insertado en el DOM
+    setTimeout(async () => {
+        const tbody = document.getElementById('challenges-tbody');
+        if (!tbody) return;
+
+        // Estado de carga (colspan="7" porque hay 7 columnas en el thead)
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                    Cargando desafíos...
+                </td>
+            </tr>
+        `;
+
+        try {
+            const response = await fetch('http://localhost:3000/api/challenges');
+
+            if (!response.ok) {
+                throw new Error(`Error en la petición: ${response.status}`);
+            }
+
+            const challenges = await response.json();
+
+            tbody.innerHTML = '';
+
+            // Estado vacío
+            if (challenges.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                            No hay desafíos disponibles en este momento.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // Pintar filas dinámicamente
+            challenges.forEach(challenge => {
+                const tr = document.createElement('tr');
+                const efficiency = challenge.efficiencyReq !== null ? challenge.efficiencyReq : '-';
+
+                tr.innerHTML = `
+                    <td class="col-num">${challenge.challengeNumber}</td>
+                    <td>${challenge.title}</td>
+                    <td>${challenge.category}</td>
+                    <td>${challenge.difficulty}</td>
+                    <td style="text-align: center;" class="col-num">${efficiency}</td>
+                    <td style="text-align: center;">-</td>
+                    <td style="text-align: center;">${challenge.status}</td>
+                `;
+
+                tbody.appendChild(tr);
+            });
+
+        } catch (error) {
+            console.error('Error al cargar los desafíos:', error);
+
+            // Estado de error
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7" style="text-align: center; padding: 2rem; color: #ff5f56;">
+                        Error de conexión. No se pudieron cargar los desafíos.
+                    </td>
+                </tr>
+            `;
+        }
+    }, 0);
+
     return `
     <div class="dashboard-layout">
-        <!-- sider navegation -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <a href="/" class="logo">
@@ -50,7 +118,6 @@ export function renderChallenges() {
                 <p>Pon a prueba tu lógica construyendo fórmulas resilientes.</p>
             </header>
 
-            <!-- stats overview -->
             <section class="stats-grid">
                 <article class="stat-card">
                     <span class="stat-label">Resueltos</span>
@@ -66,7 +133,6 @@ export function renderChallenges() {
                 </article>
             </section>
 
-            <!-- controls & filters -->
             <div class="controls-bar">
                 <input type="text" class="search-input" placeholder="Buscar desafío por título o función...">
                 
@@ -94,10 +160,8 @@ export function renderChallenges() {
                 </div>
             </div>
 
-            <!-- table & efficiency block -->
             <div class="content-grid">
                 
-                <!-- challenges table -->
                 <section class="table-container">
                     <table class="challenges-table">
                         <thead>
@@ -111,57 +175,10 @@ export function renderChallenges() {
                                 <th style="text-align: center;">Estado</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td class="col-num">001</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                            </tr>
-                            <tr>
-                                <td class="col-num">002</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                            </tr>
-                            <tr>
-                                <td class="col-num">003</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                            </tr>
-                            <tr>
-                                <td class="col-num">004</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                            </tr>
-                            <tr>
-                                <td class="col-num">005</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                                <td class="col-empty">-</td>
-                            </tr>
-                        </tbody>
+                        <tbody id="challenges-tbody"></tbody>
                     </table>
                 </section>
 
-                <!-- efficiency block -->
                 <aside class="efficiency-block">
                     <div class="icon-wrapper">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
